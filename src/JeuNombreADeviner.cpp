@@ -11,19 +11,23 @@
 // Historique du fichier:
 /*************************************************/
 #include <iostream>
+#include <ctime>
 using namespace std;
 #include "../include/JeuNombreAdeviner.h"
 
 // Nom :InitJoueur
 // Rôle : Crée un joueur. Initialise toutes les informations du joueur.
 //        Le nombre de tentatives, de parties gagnées et de parties jouées seront à 0.
-// Paramètres d'entrée :
-// Paramètres de sortie :
+// Paramètres d'entrée : un_nom
+// Paramètres de sortie : TJoueur, &jouerACreer
 // Paramètres d'entrée/sortie :
 
 void InitJoueur(TJoueur& joueurAcreer, string un_nom)
 {
-    //A COMPLETER
+    joueurAcreer.nom = un_nom; // Initialise le nom de joueur à la chaîne un_nom
+    joueurAcreer.nbPartiesJouees = 0; // Initialise le nombre de parties jouées
+    joueurAcreer.nbPartiesGagnees = 0; // Initialise le nombre de parties gagnées
+    joueurAcreer.nbTentatives = 0; // Initialise le nombre de tentatives
 }
 
 
@@ -33,16 +37,18 @@ void InitJoueur(TJoueur& joueurAcreer, string un_nom)
 
 int TirerNombreMystere()
 {
-    //A COMPLETER
-        return -1;
+
+    srand (time(NULL));
+    int mystery = rand() % 10 + 1;
+        return mystery;
 }
 
 
 // Nom :JouerPartie
 // Rôle : Fait jouer une partie au joueur passé en paramètre
 //        A la fin, met à jour les informations du joueur
-// Paramètres d'entrée:
-// Paramètres de sortie:
+// Paramètres d'entrée: &un_joueur
+// Paramètres de sortie: TJoueur, nombreADeviner
 // Paramètres d'entrée/sortie :
 
 void JouerPartie(TJoueur& un_joueur, int nombreADeviner)
@@ -53,11 +59,11 @@ void JouerPartie(TJoueur& un_joueur, int nombreADeviner)
 
 // Nom : MajResultatsJoueur
 // Rôle : met à jour les informations du joueur passé en paramètre
-// Paramètres d'entrée:
+// Paramètres d'entrée: nbEssais, gagne
 // Paramètres de sortie:
-// Paramètres d'entrée/sortie :
+// Paramètres d'entrée/sortie : TJoueur, joueur
 
-void MajResultatsJoueur(TJoueur joueur, int nbEssais, bool gagne)
+void MajResultatsJoueur(TJoueur &joueur, int nbEssais, bool gagne)
 {
    // A COMPLETER
 }
@@ -67,7 +73,7 @@ void MajResultatsJoueur(TJoueur joueur, int nbEssais, bool gagne)
 //        le nombre de parties gagnées, le nombre de parties perdues, le nombre d'essais total
 //        La fonction N'affiche PAS les informations à l'écran
 // Paramètres d'entrée:
-// Paramètres de sortie:
+// Paramètres de sortie: joueur, nbEssais, gagne
 // Paramètres d'entrée/sortie :
 
 void ResultatsJoueur(TJoueur joueur, int& nbsucces, int& nbechec, int& nbessais)
