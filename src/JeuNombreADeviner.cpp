@@ -9,6 +9,7 @@
 //                              iostream
 //                              ctime
 // Historique du fichier:
+// 01/02/2020 - Déclaration InitJoueur; TirerNombreMystere
 /*************************************************/
 #include <iostream>
 #include <ctime>
@@ -51,10 +52,10 @@ int TirerNombreMystere()
 // Paramètres de sortie: TJoueur, nombreADeviner
 // Paramètres d'entrée/sortie :
 
-void JouerPartie(TJoueur& un_joueur, int nombreADeviner)
+void JouerPartie(TJoueur &un_joueur, int nombreADeviner)
 {
     int nombre_ecrit;
-    int i;
+    int i = 0;
     nombre_ecrit = -1;
     while (i<5)
     {
@@ -63,16 +64,15 @@ void JouerPartie(TJoueur& un_joueur, int nombreADeviner)
         if (nombre_ecrit==nombreADeviner)
         {
             (cout<< "Bravo, tu as trouvé !\n");
-            un_joueur.nbPartiesJouees++;
-            un_joueur.nbPartiesGagnees++;
-            un_joueur.nbTentatives=un_joueur.nbTentatives+i;
+            MajResultatsJoueur(un_joueur, i+1, true);
+            i = 5;
         }
-        if (nombre_ecrit >= nombreADeviner)
+        else if (nombre_ecrit >= nombreADeviner)
         {
             (cout << "Plus petit\n");
             i++;
         }
-        if (nombre_ecrit <= nombreADeviner)
+        else if (nombre_ecrit <= nombreADeviner)
         {
             (cout << "Plus grand\n");
             i++;
@@ -97,7 +97,15 @@ void JouerPartie(TJoueur& un_joueur, int nombreADeviner)
 
 void MajResultatsJoueur(TJoueur &joueur, int nbEssais, bool gagne)
 {
-   // A COMPLETER
+    joueur.nbTentatives = nbEssais + joueur.nbTentatives;
+
+    if (gagne = true)
+    {
+        joueur.nbPartiesGagnees = joueur.nbPartiesGagnees + 1;
+    }
+
+
+
 }
 
 // Nom : ResultatsJoueur
