@@ -50,7 +50,7 @@ int TirerNombreMystere();
 // Paramètres de sortie: TJoueur, nombreADeviner
 // Paramètres d'entrée/sortie :
 
-void JouerPartie (TJoueur &un_joueur, int nbEssais, int nombreADeviner);
+void JouerPartie (TJoueur &un_joueur, int nombreADeviner);
 
 // Nom : MajResultatsJoueur
 // Rôle : met à jour les informations du joueur passé en paramètre
@@ -58,7 +58,7 @@ void JouerPartie (TJoueur &un_joueur, int nbEssais, int nombreADeviner);
 // Paramètres de sortie:
 // Paramètres d'entrée/sortie : TJoueur, joueur
 
-void MajResultatsJoueur(TJoueur joueur, int nbEssais, bool gagne);
+void MajResultatsJoueur(TJoueur &un_joueur, int nbEssais, bool gagne);
 
 
 
@@ -70,7 +70,7 @@ void MajResultatsJoueur(TJoueur joueur, int nbEssais, bool gagne);
 // Paramètres de sortie: joueur, nbEssais, gagne
 // Paramètres d'entrée/sortie :
 
-void ResultatsJoueur(TJoueur joueur, int &nbsucces, int &nbechec, int & nbessais);
+void ResultatsJoueur(TJoueur joueur, int &nbsucces, int &nbechec, int &nbessais);
 
 
 // Nom :Nom

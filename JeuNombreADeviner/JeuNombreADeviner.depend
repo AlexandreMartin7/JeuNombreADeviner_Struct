@@ -28,10 +28,15 @@
 1611591506 z:\pinaud\jeu_du_nombre_à_deviner\jeunombreadeviner_struct\include\jeunombreadeviner.h
 	<string>
 
-1612116975 source:d:\github\jeunombreadeviner_struct\src\mainjeunombreadeviner.cpp
+1612730432 source:d:\github\jeunombreadeviner_struct\src\mainjeunombreadeviner.cpp
 	<iostream>
 	"../include/JeuNombreADeviner.h"
 
-1612115627 d:\github\jeunombreadeviner_struct\include\jeunombreadeviner.h
+1612726876 d:\github\jeunombreadeviner_struct\include\jeunombreadeviner.h
 	<string>
+
+1612731559 source:d:\github\jeunombreadeviner_struct\src\jeunombreadeviner.cpp
+	<iostream>
+	<ctime>
+	"../include/JeuNombreAdeviner.h"
 

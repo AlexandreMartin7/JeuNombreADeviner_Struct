@@ -39,9 +39,9 @@ void InitJoueur(TJoueur& joueurAcreer, string un_nom)
 int TirerNombreMystere()
 {
 
-    srand (time(NULL));
-    int mystery = rand() % 10 + 1;
-        return mystery;
+    srand ((int)time(0));
+    int nombreADeviner = rand() % 10 + 1;
+    return nombreADeviner;
 }
 
 
@@ -54,37 +54,44 @@ int TirerNombreMystere()
 
 void JouerPartie(TJoueur &un_joueur, int nombreADeviner)
 {
-    int nombre_ecrit;
-    int i = 0;
-    nombre_ecrit = -1;
-    while (i<5)
+    int nbSaisi = 0; // Proposition de réponse du joueur
+    int i = 0; // Compteur de tentatives
+    while (i<4) // Tant qu'on a moins de 4 tentatives
     {
-        cout << "Trouve le chiffre mystère, compris entre 1 et 10\n";
-        cin >> nombre_ecrit;
-        if (nombre_ecrit==nombreADeviner)
+        cout << "Trouve le chiffre mystere, compris entre 1 et 10\n";
+        cin >> nbSaisi; // Saisie du nombre mystère
+        if (nbSaisi == nombreADeviner)
         {
-            (cout<< "Bravo, tu as trouvé !\n");
-            MajResultatsJoueur(un_joueur, i+1, true);
-            i = 5;
+            (cout << "Bravo, tu as trouve !\n");
+            i++;
+            un_joueur.nbTentatives = i; // Met à jour le compte de tentatives
+            MajResultatsJoueur(un_joueur, i, true);
+            i = 5; // Permet de sortir de la boucle
         }
-        else if (nombre_ecrit >= nombreADeviner)
+        else if (nbSaisi > nombreADeviner)
         {
+            i++; // Met à jour le compteur d'essais
+            un_joueur.nbTentatives = i; // Met à jour nbTentatives
             (cout << "Plus petit\n");
-            i++;
+            MajResultatsJoueur(un_joueur, i, false);
         }
-        else if (nombre_ecrit <= nombreADeviner)
+        else if (nbSaisi < nombreADeviner)
         {
-            (cout << "Plus grand\n");
-            i++;
+            i++; // Met à jour le compteur d'essais
+            un_joueur.nbTentatives = i; // Met à jour nbTentatives
+            cout << "Plus grand \n" << "Tentative " << un_joueur.nbTentatives << " sur 4" << "\n";
+             // Met à jour
+            MajResultatsJoueur(un_joueur, i, false);
         }
 
     }
 
-    if (i==5)
+    if (i==4)
     {
         cout << "Perdu!\n";
         un_joueur.nbPartiesJouees++;
-        un_joueur.nbTentatives=un_joueur.nbTentatives + i;
+        un_joueur.nbTentatives = i;
+
     }
 }
 
@@ -95,17 +102,15 @@ void JouerPartie(TJoueur &un_joueur, int nombreADeviner)
 // Paramètres de sortie:
 // Paramètres d'entrée/sortie : TJoueur, joueur
 
-void MajResultatsJoueur(TJoueur &joueur, int nbEssais, bool gagne)
+void MajResultatsJoueur(TJoueur &un_joueur, int nbEssais, bool gagne)
 {
-    joueur.nbTentatives = nbEssais + joueur.nbTentatives;
+    un_joueur.nbTentatives;
 
-    if (gagne = true)
+    if (gagne == true)
     {
-        joueur.nbPartiesGagnees = joueur.nbPartiesGagnees + 1;
+        un_joueur.nbPartiesGagnees++;
     }
-
-
-
+    un_joueur.nbPartiesJouees++;
 }
 
 // Nom : ResultatsJoueur
@@ -118,7 +123,9 @@ void MajResultatsJoueur(TJoueur &joueur, int nbEssais, bool gagne)
 
 void ResultatsJoueur(TJoueur joueur, int& nbsucces, int& nbechec, int& nbessais)
 {
-    // A COMPLETER
+    nbsucces = joueur.nbPartiesGagnees/2;
+    nbechec = (joueur.nbPartiesJouees - joueur.nbPartiesGagnees)/2;
+    nbessais = joueur.nbTentatives;
 }
 
 // Nom :Nom

@@ -16,7 +16,16 @@ using namespace std;
 
 int main()
 {
-    cout << "Vous allez jouer pour deviner un nombre secret" << endl;
+    string un_nom;
+    TJoueur joueurAcreer;
+    cout << "Vous allez jouer au jeu du nombre a deviner" << endl;
+    cout << "Quel est votre nom de joueur?" << endl;
+    cin >> un_nom;
+    InitJoueur(joueurAcreer, un_nom);
+    JouerPartie(joueurAcreer, TirerNombreMystere());
+    MajResultatsJoueur(joueurAcreer, joueurAcreer.nbTentatives, joueurAcreer.nbPartiesGagnees);
+    ResultatsJoueur(joueurAcreer, joueurAcreer.nbPartiesGagnees, joueurAcreer.nbPartiesJouees, joueurAcreer.nbTentatives);
+    cout << "Resultats du joueur : " << joueurAcreer.nom << "\n" << "Tu as gagne " << joueurAcreer.nbPartiesGagnees << " fois en " << joueurAcreer.nbTentatives << " essais.";
 
-    return 0;
+
 }
